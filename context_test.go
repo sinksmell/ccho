@@ -607,8 +607,7 @@ func TestContextRedirect(t *testing.T) {
 }
 
 func TestContextStore(t *testing.T) {
-	var c Context
-	c = new(context)
+	var c = new(context)
 	c.Set("name", "Jon Snow")
 	testify.Equal(t, "Jon Snow", c.Get("name"))
 }

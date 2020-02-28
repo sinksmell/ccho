@@ -418,7 +418,6 @@ func (r *Router) Find(method, path string, c Context) {
 			// No next node to go down in routing (issue #954)
 			// Find nearest "any" route going up the routing tree
 			search = ns
-			np := nn.parent
 			// Consider param route one level up only
 			if cn = nn.findChildByKind(pkind); cn != nil {
 				pos := strings.IndexByte(ns, '/')
@@ -436,7 +435,7 @@ func (r *Router) Find(method, path string, c Context) {
 			}
 			// No param route found, try to resolve nearest any route
 			for {
-				np = nn.parent
+				np := nn.parent
 				if cn = nn.findChildByKind(akind); cn != nil {
 					break
 				}
@@ -481,5 +480,4 @@ func (r *Router) Find(method, path string, c Context) {
 		pvalues[len(cn.pnames)-1] = ""
 	}
 
-	return
 }
